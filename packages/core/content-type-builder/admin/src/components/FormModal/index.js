@@ -807,6 +807,8 @@ const FormModal = () => {
     nestedComponents
   );
 
+  console.log(displayedAttributes);
+
   if (!isOpen) {
     return null;
   }
