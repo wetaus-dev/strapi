@@ -160,7 +160,7 @@ const DataManagerProvider = ({
     shouldAddComponentToData = false
   ) => {
     const actionType = isEditing ? EDIT_ATTRIBUTE : ADD_ATTRIBUTE;
-
+    console.log('adding attribute', attributeToSet)
     dispatch({
       type: actionType,
       attributeToSet,
@@ -187,7 +187,7 @@ const DataManagerProvider = ({
     shouldAddComponentToData = false
   ) => {
     const type = schemaType === 'contentType' ? CREATE_SCHEMA : CREATE_COMPONENT_SCHEMA;
-
+    console.log('creating schema', data)
     dispatch({
       type,
       data,

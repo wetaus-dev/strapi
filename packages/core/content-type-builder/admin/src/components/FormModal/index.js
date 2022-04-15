@@ -4,6 +4,7 @@ import {
   useTracking,
   useNotification,
   useStrapiApp,
+  useLibrary,
 } from '@strapi/helper-plugin';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
@@ -91,6 +92,8 @@ const FormModal = () => {
     kind,
     step,
     targetUid,
+    isCustomField,
+    schema: customFieldSchema,
   } = useFormModalNavigation();
 
   const tabGroupRef = useRef();
@@ -106,6 +109,7 @@ const FormModal = () => {
   const ctbPlugin = getPlugin(pluginId);
   const ctbFormsAPI = ctbPlugin.apis.forms;
   const inputsFromPlugins = ctbFormsAPI.components.inputs;
+  const { fields } = useLibrary();
 
   const {
     addAttribute,
@@ -570,6 +574,16 @@ const FormModal = () => {
         if (!isComponentAttribute) {
           addAttribute(modifiedData, forTarget, targetUid, actionType === 'edit', initialData);
 
+          // if (isCustomField) {
+          //   addAttribute(
+          //     { name: modifiedData.name, ...customFieldSchema },
+          //     forTarget,
+          //     targetUid,
+          //     actionType === 'edit',
+          //     initialData
+          //   );
+          // }
+
           if (shouldContinue) {
             onNavigateToChooseAttributeModal({
               forTarget,
@@ -804,7 +818,8 @@ const FormModal = () => {
     forTarget,
     targetUid,
     // We need the nested components so we know when to remove the component option
-    nestedComponents
+    nestedComponents,
+    fields
   );
 
   console.log(displayedAttributes);
@@ -883,7 +898,7 @@ const FormModal = () => {
     forTarget,
     contentTypeSchema: allDataSchema.contentType || {},
   }).sections;
-
+  console.log({ baseForm });
   const baseFormInputNames = getFormInputNames(baseForm);
   const advancedFormInputNames = getFormInputNames(advancedForm);
   const doesBaseFormHasError = Object.keys(formErrors).some(key =>

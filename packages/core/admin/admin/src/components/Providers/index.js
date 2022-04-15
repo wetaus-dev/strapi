@@ -53,6 +53,7 @@ const Providers = ({
                 <StrapiAppProvider
                   getPlugin={getPlugin}
                   menu={menu}
+                  fields={fields}
                   plugins={plugins}
                   runHookParallel={runHookParallel}
                   runHookWaterfall={runHookWaterfall}

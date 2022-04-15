@@ -103,7 +103,7 @@ module.exports = {
       strapi.reload.isWatching = false;
 
       const contentTypeService = getService('content-types');
-
+      console.log({ body });
       const component = await contentTypeService.editContentType(uid, {
         contentType: body.contentType,
         components: body.components,

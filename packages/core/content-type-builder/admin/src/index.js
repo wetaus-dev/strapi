@@ -37,6 +37,17 @@ export default {
         forms: formsAPI,
       },
     });
+
+    // const schema = {
+    //   type: 'text',
+    //   pluginOptions: {
+    //     'color-picker': {
+    //       enabled: true
+    //     }
+    //   }
+    // }
+
+    app.addFields({ type: 'colorpicker', Component: () => 'coucou' });
   },
   bootstrap() {},
   async registerTrads({ locales }) {

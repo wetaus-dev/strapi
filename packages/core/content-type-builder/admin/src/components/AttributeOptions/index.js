@@ -64,7 +64,6 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
             <Tab>Default</Tab>
             <Tab>Custom</Tab>
           </Tabs>
-
           <TabPanels>
             <TabPanel>
               <Box paddingTop={6} paddingBottom={4}>
@@ -118,7 +117,7 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                               paddingBottom={1}
                               style={{ height: '100%' }}
                             >
-                              <AttributeOption type={attribute} />
+                              <AttributeOption type={attribute.type} schema={attribute.schema} isCustomField />
                             </Box>
                           </GridItem>
                         );

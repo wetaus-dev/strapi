@@ -216,7 +216,7 @@ module.exports = function createComponentBuilder() {
         .set(['options', 'draftAndPublish'], infos.draftAndPublish || false)
         .set('pluginOptions', infos.pluginOptions)
         .setAttributes(this.convertAttributes(newAttributes));
-
+      console.log({ newAttributes });
       return contentType;
     },
 

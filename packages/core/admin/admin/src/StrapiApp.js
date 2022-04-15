@@ -284,6 +284,7 @@ class StrapiApp {
         addComponents: this.addComponents,
         addCorePluginMenuLink: this.addCorePluginMenuLink,
         addFields: this.addFields,
+        getFields: this.getFields,
         addMenuLink: this.addMenuLink,
         addMiddlewares: this.addMiddlewares,
         addReducers: this.addReducers,
