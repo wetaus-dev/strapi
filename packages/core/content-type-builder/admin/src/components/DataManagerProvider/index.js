@@ -423,6 +423,7 @@ const DataManagerProvider = ({
   }
 
   const submitData = async additionalContentTypeData => {
+    console.log({additionalContentTypeData})
     try {
       const isCreating = get(modifiedData, [firstKeyToMainSchema, 'isTemporary'], false);
       const body = {
@@ -527,6 +528,7 @@ const DataManagerProvider = ({
   };
 
   const updateSchema = (data, schemaType, componentUID) => {
+    console.log('update schema', {data})
     dispatch({
       type: UPDATE_SCHEMA,
       data,

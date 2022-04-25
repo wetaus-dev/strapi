@@ -25,31 +25,6 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
   const titleIdSuffix = forTarget.includes('component') ? 'component' : kind;
   const titleId = getTrad(`modalForm.sub-header.chooseAttribute.${titleIdSuffix}`);
 
-  //   <TabGroup label="Some stuff for the label" id="tabs" onTabChange={selected => console.log(selected)}>
-  //   <Tabs>
-  //     <Tab>First</Tab>
-  //     <Tab>Second</Tab>
-  //     <Tab>Third</Tab>
-  //   </Tabs>
-  //   <TabPanels>
-  //     <TabPanel>
-  //       <Box color="neutral800" padding={4} background="neutral0">
-  //         First panel
-  //       </Box>
-  //     </TabPanel>
-  //     <TabPanel>
-  //       <Box color="neutral800" padding={4} background="neutral0">
-  //         Second panel
-  //       </Box>
-  //     </TabPanel>
-  //     <TabPanel>
-  //       <Box color="neutral800" padding={4} background="neutral0">
-  //         Third panel
-  //       </Box>
-  //     </TabPanel>
-  //   </TabPanels>
-  // </TabGroup>
-
   if (attributes.custom.length) {
     return (
       <ModalBody>
@@ -109,6 +84,8 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                         const paddingLeft = isOdd ? 2 : 0;
                         const paddingRight = isOdd ? 0 : 2;
 
+                        console.log({ attribute });
+
                         return (
                           <GridItem key={attribute} col={6} style={{ height: '100%' }}>
                             <Box
@@ -117,7 +94,11 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                               paddingBottom={1}
                               style={{ height: '100%' }}
                             >
-                              <AttributeOption type={attribute.type} schema={attribute.schema} isCustomField />
+                              <AttributeOption
+                                type={attribute.type}
+                                columnType={attribute.columnType}
+                                isCustomField
+                              />
                             </Box>
                           </GridItem>
                         );

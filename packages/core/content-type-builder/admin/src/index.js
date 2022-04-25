@@ -5,6 +5,7 @@ import PluginIcon from './components/PluginIcon';
 import pluginId from './pluginId';
 import reducers from './reducers';
 import formsAPI from './utils/formAPI';
+import ColorPicker from './colorpicker';
 
 const name = pluginPkg.strapi.name;
 
@@ -38,16 +39,7 @@ export default {
       },
     });
 
-    // const schema = {
-    //   type: 'text',
-    //   pluginOptions: {
-    //     'color-picker': {
-    //       enabled: true
-    //     }
-    //   }
-    // }
-
-    app.addFields({ type: 'colorpicker', Component: () => 'coucou' });
+    app.addFields({ type: 'colorpicker', columnType: 'string', Component: ColorPicker });
   },
   bootstrap() {},
   async registerTrads({ locales }) {

@@ -174,7 +174,7 @@ const editContentType = async (uid, { contentType, components = [] }) => {
     uid,
     ...replaceTmpUIDs(contentType),
   });
-
+  console.log({ updatedContentType });
   components.forEach(component => {
     if (!_.has(component, 'uid')) {
       return builder.createComponent(replaceTmpUIDs(component));

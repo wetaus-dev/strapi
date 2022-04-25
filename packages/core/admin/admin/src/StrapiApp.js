@@ -93,6 +93,7 @@ class StrapiApp {
     if (Array.isArray(fields)) {
       fields.map(field => this.library.fields.add(field));
     } else {
+      console.log('StrapiApp', this.library);
       this.library.fields.add(fields);
     }
   };

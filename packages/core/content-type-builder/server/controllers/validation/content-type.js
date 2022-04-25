@@ -92,6 +92,7 @@ const validateContentTypeInput = data => {
  * Validator for content type edition
  */
 const validateUpdateContentTypeInput = data => {
+  console.log('I am validating!!!!!!!!!')
   if (_.has(data, 'contentType')) {
     removeEmptyDefaults(data.contentType);
   }

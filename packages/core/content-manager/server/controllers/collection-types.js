@@ -114,14 +114,16 @@ module.exports = {
     }
 
     const pickWritables = pickWritableAttributes({ model });
+    
     const pickPermittedFields = permissionChecker.sanitizeUpdateInput(entity);
     const setCreator = setCreatorFields({ user, isEdition: true });
 
     const sanitizeFn = pipeAsync(pickWritables, pickPermittedFields, setCreator);
 
     const sanitizedBody = await sanitizeFn(body);
+    
     const updatedEntity = await entityManager.update(entity, sanitizedBody, model);
-
+    console.log({updatedEntity})
     ctx.body = await permissionChecker.sanitizeOutput(updatedEntity);
   },
 

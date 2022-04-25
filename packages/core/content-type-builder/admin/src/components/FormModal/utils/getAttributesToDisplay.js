@@ -14,9 +14,10 @@ const getAttributes = (dataTarget = '', targetUid, nestedComponents, fields) => 
   ];
 
   const customFieldNames = Object.keys(fields);
+  console.log({ fields });
   const customAttributes = customFieldNames
     .filter(name => !defaultAttributes.includes(name))
-    .map(customField => customField);
+    .map(customField => ({ type: customField, columnType: fields[customField].columnType }));
 
   const isPickingAttributeForAContentType = dataTarget === 'contentType';
   const isNestedInAnotherComponent = nestedComponents.includes(targetUid);

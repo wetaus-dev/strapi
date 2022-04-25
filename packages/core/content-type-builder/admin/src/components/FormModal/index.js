@@ -84,6 +84,7 @@ const FormModal = () => {
     actionType,
     attributeName,
     attributeType,
+    columnType,
     categoryName,
     dynamicZoneTarget,
     forTarget,
@@ -92,8 +93,6 @@ const FormModal = () => {
     kind,
     step,
     targetUid,
-    isCustomField,
-    schema: customFieldSchema,
   } = useFormModalNavigation();
 
   const tabGroupRef = useRef();
@@ -479,6 +478,8 @@ const FormModal = () => {
       const ctTargetUid = forTarget === 'components' ? targetUid : uid;
 
       if (isCreatingContentType) {
+        console.log({ isCreatingContentType });
+
         // Create the content type schema
         if (isCreating) {
           createSchema({ ...modifiedData, kind }, modalType, uid);
@@ -491,10 +492,12 @@ const FormModal = () => {
             targetUid: ctTargetUid,
           });
         } else {
+          console.log('canEditCT', canEditContentType(allDataSchema, modifiedData));
+
           // We cannot switch from collection type to single when the modal is making relations other than oneWay or manyWay
           if (canEditContentType(allDataSchema, modifiedData)) {
             onCloseModal();
-
+            console.log({ modifiedData });
             submitData(modifiedData);
           } else {
             toggleNotification({
@@ -572,17 +575,20 @@ const FormModal = () => {
 
         // Normal fields like boolean relations or dynamic zone
         if (!isComponentAttribute) {
-          addAttribute(modifiedData, forTarget, targetUid, actionType === 'edit', initialData);
+          console.log({ attributeType, columnType });
 
-          // if (isCustomField) {
-          //   addAttribute(
-          //     { name: modifiedData.name, ...customFieldSchema },
-          //     forTarget,
-          //     targetUid,
-          //     actionType === 'edit',
-          //     initialData
-          //   );
-          // }
+          // For test columnType = isCustomField
+          if (columnType) {
+            addAttribute(
+              { name: modifiedData.name, columnType, ...modifiedData },
+              forTarget,
+              targetUid,
+              actionType === 'edit',
+              initialData
+            );
+          } else {
+            addAttribute(modifiedData, forTarget, targetUid, actionType === 'edit', initialData);
+          }
 
           if (shouldContinue) {
             onNavigateToChooseAttributeModal({
@@ -898,7 +904,6 @@ const FormModal = () => {
     forTarget,
     contentTypeSchema: allDataSchema.contentType || {},
   }).sections;
-  console.log({ baseForm });
   const baseFormInputNames = getFormInputNames(baseForm);
   const advancedFormInputNames = getFormInputNames(advancedForm);
   const doesBaseFormHasError = Object.keys(formErrors).some(key =>

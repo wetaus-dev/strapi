@@ -15,6 +15,7 @@ module.exports = () => ({
     },
   },
   documentation: {
+    enabled: false,
     config: {
       info: {
         version: '2.0.0',

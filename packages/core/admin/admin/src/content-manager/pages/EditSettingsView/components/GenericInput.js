@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 
 const GenericInput = ({ type, options, onChange, value, name, ...inputProps }) => {
   const { formatMessage } = useIntl();
-
+console.log('GenericInput', type)
   switch (type) {
     case 'text': {
       return <TextInput onChange={onChange} value={value} name={name} {...inputProps} />;

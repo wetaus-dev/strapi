@@ -15,23 +15,21 @@ import getTrad from '../../../utils/getTrad';
 import AttributeIcon from '../../AttributeIcon';
 import BoxWrapper from './BoxWrapper';
 
-const AttributeOption = ({ type, schema, isCustomField }) => {
+const AttributeOption = ({ type, columnType, isCustomField }) => {
   const { formatMessage } = useIntl();
 
   const { onClickSelectField } = useFormModalNavigation();
 
   const handleClick = () => {
     const step = type === 'component' ? '1' : null;
-
+    console.log('click!!!!', { columnType, type });
     onClickSelectField({
       attributeType: type,
       step,
       isCustomField,
-      schema
+      columnType,
     });
   };
-
-  
 
   return (
     <BoxWrapper padding={4} as="button" hasRadius type="button" onClick={handleClick}>
@@ -58,13 +56,13 @@ const AttributeOption = ({ type, schema, isCustomField }) => {
 AttributeOption.defaultProps = {
   type: 'text',
   isCustomField: false,
-  schema: {}
+  columnType: '',
 };
 
 AttributeOption.propTypes = {
   type: PropTypes.string,
   isCustomField: PropTypes.bool,
-  schema: PropTypes.object
+  columnType: PropTypes.string,
 };
 
 export default AttributeOption;

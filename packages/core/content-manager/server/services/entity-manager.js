@@ -185,9 +185,9 @@ module.exports = ({ strapi }) => ({
 
   update(entity, body, uid) {
     const publishData = omitPublishedAtField(body);
-
+    
     const params = { data: publishData, populate: getDeepPopulate(uid) };
-
+    
     return strapi.entityService.update(uid, entity.id, params);
   },
 

@@ -81,17 +81,21 @@
       "required": false,
       "min": 2
     },
-    "asdfasdf": {
-      "type": "string"
-    },
     "boom": {
       "type": "string"
     },
-    "asdfasdfsd": {
+    "yes": {
       "type": "string"
     },
-    "fffff": {
-      "type": "integer"
+    "color": {
+      "columnType": "string",
+      "type": "colorpicker"
+    },
+    "test": {
+      "type": "string"
+    },
+    "plop": {
+      "type": "string"
     }
   }
 }

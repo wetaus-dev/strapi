@@ -21,6 +21,7 @@ import {
   select,
   VALIDATIONS_TO_OMIT,
 } from './utils';
+import { bindActionCreators } from 'redux';
 
 function Inputs({
   allowedFields,
@@ -217,6 +218,22 @@ function Inputs({
     );
   }
 
+  const allFields = Object.entries(fields).reduce((acc, current) => {
+    const [currentKey, currentVal] = current;
+
+    if (typeof currentVal === 'function') {
+      acc[currentKey] = currentVal
+    }
+
+    if (typeof currentVal === 'object') {
+      acc[currentKey] = currentVal.Component
+    }
+
+    return acc;
+  }, {});
+
+  console.log({ allFields, fields });
+
   return (
     <GenericInput
       attribute={fieldSchema}
@@ -234,7 +251,7 @@ function Inputs({
         uid: InputUID,
         media: fields.media,
         wysiwyg: Wysiwyg,
-        ...fields,
+        ...allFields,
       }}
       multiple={fieldSchema.multiple || false}
       name={keys}
