@@ -48,8 +48,6 @@ const reducer = (state = initialState, action) =>
         } = action;
         delete rest.createComponent;
 
-console.log(action)
-
         const pathToDataToEdit = ['component', 'contentType'].includes(forTarget)
           ? [forTarget]
           : [forTarget, targetUid];
@@ -62,7 +60,7 @@ console.log(action)
 
         // Add the createdAttribute
         const updatedAttributes = [...currentAttributes, { ...rest, name }];
-        
+
         set(
           draftState,
           ['modifiedData', ...pathToDataToEdit, 'schema', 'attributes'],

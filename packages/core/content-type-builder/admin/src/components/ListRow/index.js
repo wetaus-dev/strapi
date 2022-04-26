@@ -31,6 +31,7 @@ function ListRow({
   target,
   targetUid,
   type,
+  intlName,
 }) {
   const { contentTypes, isInDevelopmentMode, removeAttribute } = useDataManager();
   const { formatMessage } = useIntl();
@@ -82,6 +83,11 @@ function ListRow({
     loopNumber = 0;
   }
 
+  const intlTypeName = intlName || {
+    id: getTrad(`attribute.${readableType}`),
+    defaultMessage: type,
+  };
+
   return (
     <BoxWrapper
       as="tr"
@@ -119,10 +125,7 @@ function ListRow({
           </Typography>
         ) : (
           <Typography>
-            {formatMessage({
-              id: getTrad(`attribute.${readableType}`),
-              defaultMessage: type,
-            })}
+            {formatMessage(intlTypeName)}
             &nbsp;
             {repeatable &&
               formatMessage({

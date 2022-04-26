@@ -8,7 +8,7 @@ const FormModalNavigationProvider = ({ children }) => {
   const [state, setFormModalNavigationState] = useState(INITIAL_STATE_DATA);
   const { trackUsage } = useTracking();
 
-  const onClickSelectField = ({ attributeType, step, isCustomField, columnType }) => {
+  const onClickSelectField = ({ attributeType, step, columnType, intlName }) => {
     if (state.forTarget === 'contentType') {
       trackUsage('didSelectContentTypeFieldType', { type: attributeType });
     }
@@ -20,8 +20,8 @@ const FormModalNavigationProvider = ({ children }) => {
         modalType: 'attribute',
         step,
         attributeType,
-        isCustomField,
-        columnType
+        columnType,
+        intlName
       };
     });
   };

@@ -29,7 +29,6 @@ const maxLengthIsGreaterThanOrEqualToMinLength = {
 };
 
 const getTypeValidator = (attribute, { types, modelType, attributes }) => {
-  
   const withCustomTypes = attribute.columnType ? [...types, attribute.type] : types;
   console.log({ allowedTypes: withCustomTypes });
   return yup.object({
@@ -46,7 +45,7 @@ const getTypeValidator = (attribute, { types, modelType, attributes }) => {
 
 const getTypeShape = (attribute, { modelType, attributes } = {}) => {
   const type = attribute.columnType ? attribute.columnType : attribute.type;
-  console.log('type shape', attribute);
+  
   switch (type) {
     /**
      * complexe types

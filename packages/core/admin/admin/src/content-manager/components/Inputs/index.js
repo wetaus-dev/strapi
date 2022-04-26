@@ -21,7 +21,6 @@ import {
   select,
   VALIDATIONS_TO_OMIT,
 } from './utils';
-import { bindActionCreators } from 'redux';
 
 function Inputs({
   allowedFields,

@@ -62,7 +62,7 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                                   paddingBottom={1}
                                   style={{ height: '100%' }}
                                 >
-                                  <AttributeOption type={attribute} />
+                                  <AttributeOption attribute={{ type: attribute }} />
                                 </Box>
                               </GridItem>
                             );
@@ -84,8 +84,6 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                         const paddingLeft = isOdd ? 2 : 0;
                         const paddingRight = isOdd ? 0 : 2;
 
-                        console.log({ attribute });
-
                         return (
                           <GridItem key={attribute} col={6} style={{ height: '100%' }}>
                             <Box
@@ -94,11 +92,7 @@ const AttributeOptions = ({ attributes, forTarget, kind }) => {
                               paddingBottom={1}
                               style={{ height: '100%' }}
                             >
-                              <AttributeOption
-                                type={attribute.type}
-                                columnType={attribute.columnType}
-                                isCustomField
-                              />
+                              <AttributeOption attribute={attribute} />
                             </Box>
                           </GridItem>
                         );

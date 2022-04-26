@@ -37,7 +37,9 @@ const ColorPicker = props => {
    * @param {string} colorValue - in hex format
    */
   const updateColorValue = colorValue => {
-    props.onChange({ target: { name: props.name, value: colorValue, type: props.attribute.columnType } });
+    props.onChange({
+      target: { name: props.name, value: colorValue, type: props.attribute.columnType },
+    });
   };
 
   /**
@@ -48,7 +50,7 @@ const ColorPicker = props => {
       updateColorValue(color);
     }
   }, [color, props.value]);
-console.log(props)
+  console.log({ props });
   /**
    * Handle color change from the the color picker
    * @param {string} color - in hex format

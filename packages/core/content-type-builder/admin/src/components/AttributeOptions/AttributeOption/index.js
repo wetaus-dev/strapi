@@ -15,9 +15,9 @@ import getTrad from '../../../utils/getTrad';
 import AttributeIcon from '../../AttributeIcon';
 import BoxWrapper from './BoxWrapper';
 
-const AttributeOption = ({ type, columnType, isCustomField }) => {
+const AttributeOption = ({ attribute, isCustomField }) => {
   const { formatMessage } = useIntl();
-
+  const { columnType, type, intlName, intlDescription } = attribute;
   const { onClickSelectField } = useFormModalNavigation();
 
   const handleClick = () => {
@@ -26,10 +26,13 @@ const AttributeOption = ({ type, columnType, isCustomField }) => {
     onClickSelectField({
       attributeType: type,
       step,
-      isCustomField,
       columnType,
+      intlName
     });
   };
+
+  const tradName = intlName || { id: getTrad(`attribute.${type}`), defaultMessage: type };
+  const tradDescription = intlDescription || { id: getTrad(`attribute.${type}`), defaultMessage: type };
 
   return (
     <BoxWrapper padding={4} as="button" hasRadius type="button" onClick={handleClick}>
@@ -37,14 +40,12 @@ const AttributeOption = ({ type, columnType, isCustomField }) => {
         <AttributeIcon type={type} />
         <Box paddingLeft={4}>
           <Flex>
-            <Typography fontWeight="bold">
-              {formatMessage({ id: getTrad(`attribute.${type}`), defaultMessage: type })}
-            </Typography>
+            <Typography fontWeight="bold">{formatMessage(tradName)}</Typography>
           </Flex>
 
           <Flex>
             <Typography variant="pi" textColor="neutral600">
-              {formatMessage({ id: getTrad(`attribute.${type}.description`) })}
+              {formatMessage(tradDescription)}
             </Typography>
           </Flex>
         </Box>
@@ -55,13 +56,11 @@ const AttributeOption = ({ type, columnType, isCustomField }) => {
 
 AttributeOption.defaultProps = {
   type: 'text',
-  isCustomField: false,
   columnType: '',
 };
 
 AttributeOption.propTypes = {
   type: PropTypes.string,
-  isCustomField: PropTypes.bool,
   columnType: PropTypes.string,
 };
 

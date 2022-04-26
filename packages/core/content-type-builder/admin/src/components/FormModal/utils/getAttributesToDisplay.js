@@ -14,15 +14,19 @@ const getAttributes = (dataTarget = '', targetUid, nestedComponents, fields) => 
   ];
 
   const customFieldNames = Object.keys(fields);
-  console.log({ fields });
+
   const customAttributes = customFieldNames
     .filter(name => !defaultAttributes.includes(name))
-    .map(customField => ({ type: customField, columnType: fields[customField].columnType }));
+    .map(type => ({
+      type: `plugin::${fields[type].pluginId}.${type}`,
+      ...fields[type]
+    }));
 
   const isPickingAttributeForAContentType = dataTarget === 'contentType';
   const isNestedInAnotherComponent = nestedComponents.includes(targetUid);
   const canAddComponentInAnotherComponent =
     !isPickingAttributeForAContentType && !isNestedInAnotherComponent;
+
 
   if (isPickingAttributeForAContentType) {
     return {

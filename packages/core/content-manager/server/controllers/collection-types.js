@@ -95,7 +95,7 @@ module.exports = {
     const { userAbility, user } = ctx.state;
     const { id, model } = ctx.params;
     const { body } = ctx.request;
-
+    console.log({ body });
     const entityManager = getService('entity-manager');
     const permissionChecker = getService('permission-checker').create({ userAbility, model });
 
@@ -114,16 +114,16 @@ module.exports = {
     }
 
     const pickWritables = pickWritableAttributes({ model });
-    
+
     const pickPermittedFields = permissionChecker.sanitizeUpdateInput(entity);
     const setCreator = setCreatorFields({ user, isEdition: true });
 
     const sanitizeFn = pipeAsync(pickWritables, pickPermittedFields, setCreator);
 
     const sanitizedBody = await sanitizeFn(body);
-    
+
     const updatedEntity = await entityManager.update(entity, sanitizedBody, model);
-    console.log({updatedEntity})
+    console.log({ updatedEntity });
     ctx.body = await permissionChecker.sanitizeOutput(updatedEntity);
   },
 

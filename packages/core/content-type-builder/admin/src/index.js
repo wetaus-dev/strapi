@@ -39,7 +39,17 @@ export default {
       },
     });
 
-    app.addFields({ type: 'colorpicker', columnType: 'string', Component: ColorPicker });
+    app.addFields({
+      type: 'colorpicker',
+      pluginId,
+      columnType: 'string',
+      Component: ColorPicker,
+      intlName: { id: `${pluginId}.custom-field.colorpicker`, defaultMessage: 'DefaultColorPicker' },
+      intlDescription: {
+        id: `${pluginId}.custom-field.description`,
+        defaultMessage: ''
+      },
+    });
   },
   bootstrap() {},
   async registerTrads({ locales }) {

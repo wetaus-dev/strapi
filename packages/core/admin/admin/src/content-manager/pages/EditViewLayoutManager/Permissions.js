@@ -12,7 +12,7 @@ const Permissions = props => {
   if (isLoading) {
     return <LoadingIndicatorPage />;
   }
-
+console.log({hello: props})
   return <EditView {...props} allowedActions={allowedActions} />;
 };
 

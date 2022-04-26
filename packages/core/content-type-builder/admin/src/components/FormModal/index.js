@@ -85,6 +85,7 @@ const FormModal = () => {
     attributeName,
     attributeType,
     columnType,
+    intlName,
     categoryName,
     dynamicZoneTarget,
     forTarget,
@@ -575,12 +576,10 @@ const FormModal = () => {
 
         // Normal fields like boolean relations or dynamic zone
         if (!isComponentAttribute) {
-          console.log({ attributeType, columnType });
-
           // For test columnType = isCustomField
           if (columnType) {
             addAttribute(
-              { name: modifiedData.name, columnType, ...modifiedData },
+              { name: modifiedData.name, columnType, intlName, ...modifiedData },
               forTarget,
               targetUid,
               actionType === 'edit',
