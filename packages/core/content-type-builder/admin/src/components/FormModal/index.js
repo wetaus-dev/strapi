@@ -85,7 +85,6 @@ const FormModal = () => {
     attributeName,
     attributeType,
     columnType,
-    intlName,
     categoryName,
     dynamicZoneTarget,
     forTarget,
@@ -579,7 +578,7 @@ const FormModal = () => {
           // For test columnType = isCustomField
           if (columnType) {
             addAttribute(
-              { name: modifiedData.name, columnType, intlName, ...modifiedData },
+              { name: modifiedData.name, columnType, ...modifiedData },
               forTarget,
               targetUid,
               actionType === 'edit',

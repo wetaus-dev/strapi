@@ -11,7 +11,8 @@ class Fields {
     invariant(rest.Component, 'A Component must be provided');
     invariant(type, 'A type must be provided');
 
-    this.fields[type] = rest
+    const fieldType = rest.pluginId ? `plugin::${rest.pluginId}.${type}` : type;
+    this.fields[fieldType] = { type: fieldType, ...rest };
   }
 }
 

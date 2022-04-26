@@ -72,10 +72,6 @@
     },
     "color": {
       "columnType": "string",
-      "intlName": {
-        "id": "content-type-builder.custom-field.colorpicker",
-        "defaultMessage": "DefaultColorPicker"
-      },
       "pluginOptions": {
         "i18n": {
           "localized": true

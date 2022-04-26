@@ -27,7 +27,6 @@ const AttributeOption = ({ attribute, isCustomField }) => {
       attributeType: type,
       step,
       columnType,
-      intlName
     });
   };
 

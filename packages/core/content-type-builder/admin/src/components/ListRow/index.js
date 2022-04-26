@@ -10,7 +10,7 @@ import { Box } from '@strapi/design-system/Box';
 import Lock from '@strapi/icons/Lock';
 import Pencil from '@strapi/icons/Pencil';
 import Trash from '@strapi/icons/Trash';
-import { stopPropagation, onRowClick, pxToRem } from '@strapi/helper-plugin';
+import { stopPropagation, onRowClick, pxToRem, useLibrary } from '@strapi/helper-plugin';
 import useDataManager from '../../hooks/useDataManager';
 import getTrad from '../../utils/getTrad';
 import Curve from '../../icons/Curve';
@@ -31,10 +31,11 @@ function ListRow({
   target,
   targetUid,
   type,
-  intlName,
 }) {
   const { contentTypes, isInDevelopmentMode, removeAttribute } = useDataManager();
   const { formatMessage } = useIntl();
+  const { fields } = useLibrary();
+  console.log(fields);
 
   const isMorph = type === 'relation' && relation.includes('morph');
   const ico = ['integer', 'biginteger', 'float', 'decimal'].includes(type) ? 'number' : type;
@@ -83,10 +84,12 @@ function ListRow({
     loopNumber = 0;
   }
 
-  const intlTypeName = intlName || {
-    id: getTrad(`attribute.${readableType}`),
-    defaultMessage: type,
-  };
+  const intlTypeName = fields[type]?.intlName
+    ? fields[type].intlName
+    : {
+        id: getTrad(`attribute.${readableType}`),
+        defaultMessage: type,
+      };
 
   return (
     <BoxWrapper
