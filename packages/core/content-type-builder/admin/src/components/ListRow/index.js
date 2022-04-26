@@ -35,7 +35,6 @@ function ListRow({
   const { contentTypes, isInDevelopmentMode, removeAttribute } = useDataManager();
   const { formatMessage } = useIntl();
   const { fields } = useLibrary();
-  console.log(fields);
 
   const isMorph = type === 'relation' && relation.includes('morph');
   const ico = ['integer', 'biginteger', 'float', 'decimal'].includes(type) ? 'number' : type;

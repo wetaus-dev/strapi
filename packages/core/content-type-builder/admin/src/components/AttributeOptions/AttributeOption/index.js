@@ -22,7 +22,6 @@ const AttributeOption = ({ attribute, isCustomField }) => {
 
   const handleClick = () => {
     const step = type === 'component' ? '1' : null;
-    console.log('click!!!!', { columnType, type });
     onClickSelectField({
       attributeType: type,
       step,

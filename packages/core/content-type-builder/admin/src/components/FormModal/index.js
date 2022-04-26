@@ -478,8 +478,6 @@ const FormModal = () => {
       const ctTargetUid = forTarget === 'components' ? targetUid : uid;
 
       if (isCreatingContentType) {
-        console.log({ isCreatingContentType });
-
         // Create the content type schema
         if (isCreating) {
           createSchema({ ...modifiedData, kind }, modalType, uid);
@@ -492,12 +490,9 @@ const FormModal = () => {
             targetUid: ctTargetUid,
           });
         } else {
-          console.log('canEditCT', canEditContentType(allDataSchema, modifiedData));
-
           // We cannot switch from collection type to single when the modal is making relations other than oneWay or manyWay
           if (canEditContentType(allDataSchema, modifiedData)) {
             onCloseModal();
-            console.log({ modifiedData });
             submitData(modifiedData);
           } else {
             toggleNotification({
@@ -756,7 +751,6 @@ const FormModal = () => {
       });
     } catch (err) {
       const errors = getYupInnerErrors(err);
-      console.log({ err, errors });
 
       dispatch({
         type: SET_ERRORS,
@@ -825,8 +819,6 @@ const FormModal = () => {
     nestedComponents,
     fields
   );
-
-  console.log(displayedAttributes);
 
   if (!isOpen) {
     return null;

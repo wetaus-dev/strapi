@@ -50,7 +50,7 @@ const ColorPicker = props => {
       updateColorValue(color);
     }
   }, [color, props.value]);
-  console.log({ props });
+
   /**
    * Handle color change from the the color picker
    * @param {string} color - in hex format

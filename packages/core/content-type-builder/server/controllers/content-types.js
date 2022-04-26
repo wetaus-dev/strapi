@@ -88,14 +88,12 @@ module.exports = {
   async updateContentType(ctx) {
     const { uid } = ctx.params;
     const { body } = ctx.request;
-    console.log('****************', JSON.stringify({ body }, null, 2));
 
     if (!_.has(strapi.contentTypes, uid)) {
       return ctx.send({ error: 'contentType.notFound' }, 404);
     }
 
     try {
-      console.log('I am about to validate')
       await validateUpdateContentTypeInput(body);
     } catch (error) {
       return ctx.send({ error }, 400);

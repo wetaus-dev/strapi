@@ -3,6 +3,7 @@
 const types = require('../types');
 
 const createColumn = (name, attribute) => {
+  console.log('creating column in schema.js', name, attribute);
   const { type, args = [], ...opts } = getColumnType(attribute);
 
   return {

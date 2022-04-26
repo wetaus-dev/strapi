@@ -78,6 +78,32 @@
         }
       },
       "type": "plugin::content-type-builder.colorpicker"
+    },
+    "colorTwo": {
+      "columnType": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "plugin::content-type-builder.colorpicker"
+    },
+    "colorThree": {
+      "columnType": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "plugin::content-type-builder.colorpicker"
+    },
+    "test3": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
