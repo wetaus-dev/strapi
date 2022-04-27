@@ -27,6 +27,7 @@ class StrapiApp {
   constructor({ adminConfig, appPlugins, library, middlewares, reducers }) {
     this.customConfigurations = adminConfig.config;
     this.customBootstrapConfiguration = adminConfig.bootstrap;
+    this.customFields = {};
     this.configurations = {
       authLogo: AuthLogo,
       head: { favicon },
@@ -94,6 +95,16 @@ class StrapiApp {
       fields.map(field => this.library.fields.add(field));
     } else {
       this.library.fields.add(fields);
+    }
+  };
+
+  addCustomFields = customFields => {
+    console.log('addCustomFields', customFields);
+
+    if (Array.isArray(customFields)) {
+      customFields.map(customField => (this.customFields[customField.name] = customField));
+    } else {
+      this.customFields[customFields.name] = customFields;
     }
   };
 
@@ -284,6 +295,7 @@ class StrapiApp {
         addComponents: this.addComponents,
         addCorePluginMenuLink: this.addCorePluginMenuLink,
         addFields: this.addFields,
+        addCustomFields: this.addCustomFields,
         addMenuLink: this.addMenuLink,
         addMiddlewares: this.addMiddlewares,
         addReducers: this.addReducers,

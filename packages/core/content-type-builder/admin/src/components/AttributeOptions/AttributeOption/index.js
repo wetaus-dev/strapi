@@ -15,7 +15,7 @@ import getTrad from '../../../utils/getTrad';
 import AttributeIcon from '../../AttributeIcon';
 import BoxWrapper from './BoxWrapper';
 
-const AttributeOption = ({ type }) => {
+const AttributeOption = ({ type, renderAs }) => {
   const { formatMessage } = useIntl();
 
   const { onClickSelectField } = useFormModalNavigation();
@@ -25,9 +25,12 @@ const AttributeOption = ({ type }) => {
 
     onClickSelectField({
       attributeType: type,
+      attributeRenderAs: renderAs,
       step,
     });
   };
+
+  console.log('renderAs', renderAs);
 
   return (
     <BoxWrapper padding={4} as="button" hasRadius type="button" onClick={handleClick}>
@@ -36,13 +39,16 @@ const AttributeOption = ({ type }) => {
         <Box paddingLeft={4}>
           <Flex>
             <Typography fontWeight="bold">
-              {formatMessage({ id: getTrad(`attribute.${type}`), defaultMessage: type })}
+              {renderAs ||
+                formatMessage({ id: getTrad(`attribute.${type}`), defaultMessage: type })}
             </Typography>
           </Flex>
 
           <Flex>
             <Typography variant="pi" textColor="neutral600">
-              {formatMessage({ id: getTrad(`attribute.${type}.description`) })}
+              {renderAs
+                ? 'The cooler community color picker'
+                : formatMessage({ id: getTrad(`attribute.${type}.description`) })}
             </Typography>
           </Flex>
         </Box>
@@ -53,10 +59,12 @@ const AttributeOption = ({ type }) => {
 
 AttributeOption.defaultProps = {
   type: 'text',
+  renderAs: null,
 };
 
 AttributeOption.propTypes = {
   type: PropTypes.string,
+  renderAs: PropTypes.string,
 };
 
 export default AttributeOption;

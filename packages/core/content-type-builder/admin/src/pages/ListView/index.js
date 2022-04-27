@@ -105,6 +105,8 @@ const ListView = () => {
     });
   };
 
+  console.log('modifiedData', modifiedData);
+
   return (
     <>
       <Prompt

@@ -25,6 +25,13 @@ export default {
       id: pluginId,
       name,
     });
+
+    // Register custom fields
+    app.addCustomFields({
+      name: 'my-custom-field',
+      type: 'text',
+      Component: () => <p>My custom field</p>,
+    });
   },
   bootstrap() {},
   async registerTrads({ locales }) {

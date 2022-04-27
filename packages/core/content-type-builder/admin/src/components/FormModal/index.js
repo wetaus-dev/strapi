@@ -83,6 +83,7 @@ const FormModal = () => {
     actionType,
     attributeName,
     attributeType,
+    attributeRenderAs,
     categoryName,
     dynamicZoneTarget,
     forTarget,
@@ -468,6 +469,8 @@ const FormModal = () => {
   const handleSubmit = async (e, shouldContinue = isCreating) => {
     e.preventDefault();
 
+    console.log('handleSubmit');
+
     try {
       await checkFormValidity();
 
@@ -568,7 +571,17 @@ const FormModal = () => {
 
         // Normal fields like boolean relations or dynamic zone
         if (!isComponentAttribute) {
-          addAttribute(modifiedData, forTarget, targetUid, actionType === 'edit', initialData);
+          const modifiedDataWithRenderAs = attributeRenderAs
+            ? { ...modifiedData, renderAs: attributeRenderAs }
+            : modifiedData;
+
+          addAttribute(
+            modifiedDataWithRenderAs,
+            forTarget,
+            targetUid,
+            actionType === 'edit',
+            initialData
+          );
 
           if (shouldContinue) {
             onNavigateToChooseAttributeModal({
