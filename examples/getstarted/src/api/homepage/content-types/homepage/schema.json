@@ -55,31 +55,14 @@
         "videos"
       ]
     },
-    "color1": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "color2": {
+    "color": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "type": "string",
-      "attributeRenderAs": "colorpicker"
-    },
-    "color3": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "renderAs": "colorpicker"
+      "renderAs": "plugin::content-type-builder.colorpicker"
     }
   }
 }

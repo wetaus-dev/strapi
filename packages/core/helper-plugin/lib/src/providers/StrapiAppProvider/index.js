@@ -16,6 +16,7 @@ const StrapiAppProvider = ({
   runHookWaterfall,
   runHookSeries,
   settings,
+  customFields
 }) => {
   return (
     <StrapiAppContext.Provider
@@ -27,6 +28,7 @@ const StrapiAppProvider = ({
         runHookWaterfall,
         runHookSeries,
         settings,
+        customFields
       }}
     >
       {children}

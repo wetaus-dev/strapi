@@ -1,6 +1,4 @@
-import React from 'react';
-
-const getAttributes = (dataTarget = '', targetUid, nestedComponents) => {
+const getAttributes = (dataTarget = '', targetUid, nestedComponents, customFields) => {
   const defaultAttributes = [
     'text',
     'email',
@@ -19,6 +17,7 @@ const getAttributes = (dataTarget = '', targetUid, nestedComponents) => {
   const isNestedInAnotherComponent = nestedComponents.includes(targetUid);
   const canAddComponentInAnotherComponent =
     !isPickingAttributeForAContentType && !isNestedInAnotherComponent;
+  console.log(Object.values(customFields));
 
   if (isPickingAttributeForAContentType) {
     return {
@@ -26,13 +25,7 @@ const getAttributes = (dataTarget = '', targetUid, nestedComponents) => {
         [...defaultAttributes, 'uid'],
         ['component', 'dynamiczone'],
       ],
-      custom: [
-        {
-          type: 'text',
-          renderAs: 'colorpicker',
-          Component: () => <p>My cool color picker</p>,
-        },
-      ],
+      custom: Object.values(customFields),
     };
   }
 

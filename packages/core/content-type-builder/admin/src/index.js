@@ -5,6 +5,7 @@ import PluginIcon from './components/PluginIcon';
 import pluginId from './pluginId';
 import reducers from './reducers';
 import formsAPI from './utils/formAPI';
+import ColorPicker from './colorpicker'
 
 const name = pluginPkg.strapi.name;
 
@@ -27,6 +28,13 @@ export default {
 
         return component;
       },
+    });
+
+    app.addCustomFields({
+      type: 'text',
+      pluginId,
+      renderAs: 'colorpicker',
+      Component: ColorPicker
     });
 
     app.registerPlugin({

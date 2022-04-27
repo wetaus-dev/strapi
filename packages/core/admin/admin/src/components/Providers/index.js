@@ -40,6 +40,7 @@ const Providers = ({
   showTutorials,
   store,
   themes,
+  customFields
 }) => {
   return (
     <ThemeToggleProvider themes={themes}>
@@ -58,6 +59,7 @@ const Providers = ({
                   runHookWaterfall={runHookWaterfall}
                   runHookSeries={runHookSeries}
                   settings={settings}
+                  customFields={customFields}
                 >
                   <LibraryProvider components={components} fields={fields}>
                     <LanguageProvider messages={messages} localeNames={localeNames}>

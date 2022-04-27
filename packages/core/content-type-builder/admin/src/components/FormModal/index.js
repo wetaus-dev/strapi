@@ -103,7 +103,7 @@ const FormModal = () => {
   const { push } = useHistory();
   const { trackUsage } = useTracking();
   const { formatMessage } = useIntl();
-  const { getPlugin } = useStrapiApp();
+  const { getPlugin, customFields } = useStrapiApp();
   const ctbPlugin = getPlugin(pluginId);
   const ctbFormsAPI = ctbPlugin.apis.forms;
   const inputsFromPlugins = ctbFormsAPI.components.inputs;
@@ -817,7 +817,8 @@ const FormModal = () => {
     forTarget,
     targetUid,
     // We need the nested components so we know when to remove the component option
-    nestedComponents
+    nestedComponents,
+    customFields
   );
 
   if (!isOpen) {

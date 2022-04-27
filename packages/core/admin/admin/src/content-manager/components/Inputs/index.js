@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import omit from 'lodash/omit';
 import take from 'lodash/take';
 import isEqual from 'react-fast-compare';
-import { GenericInput, NotAllowedInput, useLibrary } from '@strapi/helper-plugin';
+import { GenericInput, NotAllowedInput, useLibrary, useStrapiApp } from '@strapi/helper-plugin';
 import { useContentTypeLayout } from '../../hooks';
 import { getFieldName } from '../../utils';
 import Wysiwyg from '../Wysiwyg';
@@ -22,6 +22,7 @@ import {
   VALIDATIONS_TO_OMIT,
 } from './utils';
 
+
 function Inputs({
   allowedFields,
   fieldSchema,
@@ -37,6 +38,7 @@ function Inputs({
   value,
 }) {
   const { fields } = useLibrary();
+  const { customFields } = useStrapiApp();
   const { formatMessage } = useIntl();
   const { contentType: currentContentTypeLayout } = useContentTypeLayout();
 
@@ -79,6 +81,8 @@ function Inputs({
   }, [currentContentTypeLayout, fieldName]);
 
   const inputType = useMemo(() => {
+    if (fieldSchema.renderAs) return fieldSchema.renderAs
+
     return getInputType(type);
   }, [type]);
 
@@ -164,6 +168,20 @@ function Inputs({
 
   const { label, description, placeholder, visible } = metadatas;
 
+  const customFieldComponents = Object.entries(customFields).reduce((acc, customField) => {
+    const [currentKey, currentVal] = customField;
+
+    if (currentVal.renderAs === fieldSchema.renderAs) {
+      acc[currentKey] = currentVal.Component;
+    }
+
+    return acc;
+  }, {});
+
+  console.log(customFieldComponents);
+  const withCustomFieldComponents = { ...fields, ...customFieldComponents };
+console.log(withCustomFieldComponents)
+
   if (visible === false) {
     return null;
   }
@@ -217,6 +235,8 @@ function Inputs({
     );
   }
 
+  console.log(customFields, fieldSchema,  inputType)
+
   return (
     <GenericInput
       attribute={fieldSchema}
@@ -234,7 +254,7 @@ function Inputs({
         uid: InputUID,
         media: fields.media,
         wysiwyg: Wysiwyg,
-        ...fields,
+        ...withCustomFieldComponents
       }}
       multiple={fieldSchema.multiple || false}
       name={keys}

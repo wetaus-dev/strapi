@@ -92,6 +92,7 @@ const EditView = ({
 
   const relationsLayout = currentContentTypeLayoutData.layouts.editRelations;
   const displayedRelationsLength = relationsLayout.length;
+console.log('editview')
 
   return (
     <DataManagementWrapper allLayoutData={layout} slug={slug} id={id} origin={origin}>

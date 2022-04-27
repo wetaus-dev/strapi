@@ -102,9 +102,19 @@ class StrapiApp {
     console.log('addCustomFields', customFields);
 
     if (Array.isArray(customFields)) {
-      customFields.map(customField => (this.customFields[customField.name] = customField));
+      // TODO check better way to handle pluginId
+      customFields.map(
+        customField =>
+          (this.customFields[`plugin::${customField.pluginId}.${customField.renderAs}`] = {
+            ...customField,
+            renderAs: `plugin::${customField.pluginId}.${customField.renderAs}`,
+          })
+      );
     } else {
-      this.customFields[customFields.name] = customFields;
+      this.customFields[`plugin::${customFields.pluginId}.${customFields.renderAs}`] = {
+        ...customFields,
+        renderAs: `plugin::${customFields.pluginId}.${customFields.renderAs}`,
+      };
     }
   };
 
@@ -442,6 +452,7 @@ class StrapiApp {
         authLogo={this.configurations.authLogo}
         components={components}
         fields={fields}
+        customFields={this.customFields}
         localeNames={localeNames}
         getAdminInjectedComponents={this.getAdminInjectedComponents}
         getPlugin={this.getPlugin}
