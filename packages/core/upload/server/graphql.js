@@ -104,7 +104,12 @@ module.exports = ({ strapi }) => {
             let sanitizedEntity;
 
             try {
-              const { file: upload, info, ...metas } = args;
+              const { file: upload, info = {}, ...metas } = args;
+
+              const apiUploadFolderService = getUploadService('api-upload-folder');
+
+              const apiUploadFolder = await apiUploadFolderService.getAPIUploadFolder();
+              info.folder = apiUploadFolder.id;
 
               const file = await formatFile(upload, info, { ...metas, tmpWorkingDirectory });
               const uploadedFile = await getUploadService('upload').uploadFileAndPersist(file, {});
@@ -142,8 +147,18 @@ module.exports = ({ strapi }) => {
             try {
               const { files: uploads, ...metas } = args;
 
+              const apiUploadFolderService = getUploadService('api-upload-folder');
+
+              const apiUploadFolder = await apiUploadFolderService.getAPIUploadFolder();
+
               const files = await Promise.all(
-                uploads.map(upload => formatFile(upload, {}, { ...metas, tmpWorkingDirectory }))
+                uploads.map(upload =>
+                  formatFile(
+                    upload,
+                    { folder: apiUploadFolder.id },
+                    { ...metas, tmpWorkingDirectory }
+                  )
+                )
               );
 
               const uploadService = getUploadService('upload');
