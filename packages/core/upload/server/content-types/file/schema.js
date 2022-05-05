@@ -94,11 +94,13 @@ module.exports = {
       relation: 'manyToOne',
       target: 'plugin::upload.folder',
       inversedBy: 'files',
+      private: true,
     },
     folderPath: {
       type: 'string',
       min: 1,
       required: true,
+      private: true,
     },
   },
 };
