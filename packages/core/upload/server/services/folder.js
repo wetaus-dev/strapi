@@ -3,7 +3,6 @@
 const uuid = require('uuid').v4;
 const { keys, sortBy, omit, map, isUndefined } = require('lodash/fp');
 const { joinBy, setCreatorFields } = require('@strapi/utils');
-const { NotFoundError } = require('@strapi/utils').errors;
 const { getService } = require('../utils');
 
 const folderModel = 'plugin::upload.folder';
@@ -80,7 +79,7 @@ const update = async (id, { name, parent }, { user }) => {
   const existingFolder = await strapi.entityService.findOne(folderModel, id);
 
   if (!existingFolder) {
-    throw new NotFoundError('folder not found');
+    return undefined;
   }
 
   if (!isUndefined(parent)) {
