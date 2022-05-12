@@ -10,6 +10,7 @@ const {
 } = require('apollo-server-core');
 const depthLimit = require('graphql-depth-limit');
 const { graphqlUploadKoa } = require('graphql-upload');
+const { buildFederatedSchema } = require('./services/utils/federation/buildFederatedSchema');
 const formatGraphqlError = require('./format-graphql-error');
 
 const merge = mergeWith((a, b) => {
@@ -35,9 +36,11 @@ module.exports = async ({ strapi }) => {
 
   const path = config('endpoint');
 
+  const federatedSchema = buildFederatedSchema(schema);
+
   const defaultServerConfig = {
     // Schema
-    schema,
+    schema: federatedSchema,
 
     // Initialize loaders for this request.
     context: ({ ctx }) => ({
