@@ -1,10 +1,10 @@
 {
-  "name": "@strapi/plugin-graphql",
+  "name": "@wetaus-dev/plugin-graphql",
   "version": "4.1.10",
   "description": "Adds GraphQL endpoint with default API methods.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/strapi/strapi.git",
+    "url": "https://github.com/wetaus-dev/strapi.git",
     "directory": "packages/plugins/graphql"
   },
   "license": "SEE LICENSE IN LICENSE",
@@ -63,5 +63,8 @@
     "name": "graphql",
     "description": "Adds GraphQL endpoint with default API methods.",
     "kind": "plugin"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@wetaus-dev"
   }
 }
